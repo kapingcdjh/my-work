@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск подстроки</title>
+</head>
+<body>
+    <script>
+        function findOccurrences(text, search) {
+            let positions = [];
+            let startIndex = 0;
+            
+            while (true) {
+                let pos = text.indexOf(search, startIndex);
+                if (pos === -1) break;
+                positions.push(pos);
+                startIndex = pos + 1;
+            }
+            return positions;
+        }
+
+        let text = prompt("Введите текст:");
+        let search = prompt("Введите слово для поиска:");
+        
+        let results = findOccurrences(text, search);
+        alert("Найдено на позициях: " + results.join(", "));
+    </script>
+</body>
+</html>

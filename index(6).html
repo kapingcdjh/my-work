@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра "Вгадай число"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            background-color: #ffffff;
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0077b6;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Гра "Вгадай число"</h1>
+        <p>Вкажіть діапазон чисел та спробуйте вгадати загаданe число.</p>
+    </div>
+
+    <script>
+        let min, max;
+
+        do {
+            min = parseInt(prompt("Введіть мінімальне число"));
+            max = parseInt(prompt("Введіть максимальне число"));
+
+            if (isNaN(min) || isNaN(max) || min >= max) {
+                alert("Будь ласка, введіть коректні значення: мінімальне число повинно бути менше максимального.");
+            }
+        } while (isNaN(min) || isNaN(max) || min >= max);
+
+        let secretNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        let attempts = 9;
+        let guess;
+
+        while (attempts > 0) {
+            guess = parseInt(prompt(`Вгадайте число між ${min} і ${max}. У вас залишилось ${attempts} спроб.`));
+
+            if (isNaN(guess) || guess < min || guess > max) {
+                alert("Будь ласка, введіть число в заданому діапазоні.");
+                continue;
+            }
+
+            if (guess === secretNumber) {
+                alert("🎉 Вітаємо! Ви вгадали число!");
+                break;
+            } else if (guess > secretNumber) {
+                alert("🔻 Загадане число менше.");
+            } else {
+                alert("🔺 Загадане число більше.");
+            }
+
+            attempts--;
+        }
+
+        if (attempts === 0) {
+            alert(`😢 Ви програли! Загадане число було ${secretNumber}.`);
+        }
+    </script>
+</body>
+</html>

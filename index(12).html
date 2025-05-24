@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Компліменти з тваринами</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e6f9fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #007a89;
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px 0 20px;
+            border: 2px solid #99dde3;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #007a89;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005e6c;
+        }
+
+        #output {
+            margin-top: 20px;
+            background-color: #d5f6fa;
+            padding: 15px;
+            border-radius: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Генератор компліментів</h1>
+
+        <label for="numCompliments">Введіть кількість:</label>
+        <input type="number" id="numCompliments" value="5" min="1" max="100">
+        <button onclick="showCompliments()">Згенерувати</button>
+
+        <div id="output">Тут з'явиться результат...</div>
+    </div>
+
+    <script>
+        const animals = [
+            "кіт", "пес", "слон", "тигр", "лев", 
+            "дельфін", "панда", "лисиця", "жираф", "пінгвін"
+        ];
+
+        const compliments = [
+            "гарний, як кіт, що спить на сонці",
+            "розумний, як дельфін у морі",
+            "міцний, як слон у джунглях",
+            "спритний, як лисиця",
+            "величний, як лев у савані",
+            "миленький, як панда",
+            "вірний, як пес",
+            "граційний, як жираф",
+            "сміливий, як тигр",
+            "крутий, як пінгвін у костюмі"
+        ];
+
+        function showCompliments() {
+            const num = parseInt(document.getElementById('numCompliments').value);
+            const outputDiv = document.getElementById('output');
+
+            if (isNaN(num) || num < 1) {
+                outputDiv.innerHTML = "Будь ласка, введіть правильне число.";
+                return;
+            }
+
+            let result = "";
+            for (let i = 0; i < num; i++) {
+                const index = Math.floor(Math.random() * compliments.length);
+                result += `Ти ${compliments[index]}!<br>`;
+            }
+
+            outputDiv.innerHTML = result;
+        }
+    </script>
+</body>
+</html>
